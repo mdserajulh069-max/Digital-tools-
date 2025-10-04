@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Tools - All Your Tools in One Place</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --dark-blue: #1e40af;
+            --light-blue: #dbeafe;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --gray-bg: #f9fafb;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            font-size: 1.7rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .contact-email {
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary-blue);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .tool-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .tool-icon {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        /* Search Section */
+        .search-section {
+            padding: 40px 0;
+            background-color: var(--gray-bg);
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 30px;
+            font-size: 1rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Tools Section */
+        .tools-section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .tool-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .tool-icon-small {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        .tool-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .tool-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .use-tool-btn {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .use-tool-btn:hover {
+            background-color: var(--dark-blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo .logo {
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .footer-logo p {
+            color: #d1d5db;
+            max-width: 300px;
+        }
+
+        .footer-links {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-contact {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .footer-contact p {
+            color: #d1d5db;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .contact-email {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .tool-icons {
+                gap: 20px;
+            }
+            
+            .tool-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-tools"></i>
+                Digital Tools
+            </div>
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Tools</a>
+                <a href="#">Contact</a>
+            </nav>
+            <div class="contact-email">mdmujahidul859790@gmail.com</div>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Your Daily Tools, All in One Place</h1>
+            <p>Convert, calculate, compress, and simplify your everyday tasks — fast and free.</p>
+            <a href="#" class="cta-button">Explore Tools</a>
+            <div class="tool-icons">
+                <div class="tool-icon"><i class="fas fa-image"></i></div>
+                <div class="tool-icon"><i class="fas fa-file-alt"></i></div>
+                <div class="tool-icon"><i class="fas fa-calculator"></i></div>
+                <div class="tool-icon"><i class="fas fa-font"></i></div>
+                <div class="tool-icon"><i class="fas fa-code"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container search-container">
+            <input type="text" class="search-input" placeholder="Search a tool...">
+        </div>
+    </section>
+
+    <!-- Tools Sections -->
+    <main class="container tools-section">
+        <!-- Image Tools -->
+        <div class="section-header">
+            <h2><i class="fas fa-image"></i> Image Tools</h2>
+            <p>Edit, convert, and optimize your images with our powerful image tools</p>
+        </div>
+        <div class="tools-grid" id="image-tools">
+            <!-- Tools will be populated by JavaScript -->
+        </div>
+
+        <!-- Document Tools -->
+        <div class="section-header">
+            <h2><i class="fas fa-file-alt"></i> Document Tools</h2>
+            <p>Manage, convert, and secure your documents with ease</p>
+        </div>
+        <div class="tools-grid" id="document-tools">
+            <!-- Tools will be populated by JavaScript -->
+        </div>
+
+        <!-- Calculator Tools -->
+        <div class="section-header">
+            <h2><i class="fas fa-calculator"></i> Calculator Tools</h2>
+            <p>Perform calculations for various purposes with our calculator tools</p>
+        </div>
+        <div class="tools-grid" id="calculator-tools">
+            <!-- Tools will be populated by JavaScript -->
+        </div>
+
+        <!-- Text Tools -->
+        <div class="section-header">
+            <h2><i class="fas fa-font"></i> Text Tools</h2>
+            <p>Manipulate, analyze, and transform text with our text utilities</p>
+        </div>
+        <div class="tools-grid" id="text-tools">
+            <!-- Tools will be populated by JavaScript -->
+        </div>
+
+        <!-- Web/Developer Tools -->
+        <div class="section-header">
+            <h2><i class="fas fa-code"></i> Web/Developer Tools</h2>
+            <p>Essential tools for web developers and programmers</p>
+        </div>
+        <div class="tools-grid" id="web-tools">
+            <!-- Tools will be populated by JavaScript -->
+        </div>
+
+        <!-- Color Tools -->
+        <div class="section-header">
+            <h2><i class="fas fa-palette"></i> Color Tools</h2>
+            <p>Work with colors, generate palettes, and check accessibility</p>
+        </div>
+        <div class="tools-grid" id="color-tools">
+            <!-- Tools will be populated by JavaScript -->
+        </div>
+
+        <!-- SEO & Marketing Tools -->
+        <div class="section-header">
+            <h2><i class="fas fa-chart-line"></i> SEO & Marketing Tools</h2>
+            <p>Optimize your content and analyze your SEO performance</p>
+        </div>
+        <div class="tools-grid" id="seo-tools">
+            <!-- Tools will be populated by JavaScript -->
+        </div>
+
+        <!-- Utility Tools -->
+        <div class="section-header">
+            <h2><i class="fas fa-tools"></i> Utility Tools</h2>
+            <p>Handy utilities for everyday tasks and conversions</p>
+        </div>
+        <div class="tools-grid" id="utility-tools">
+            <!-- Tools will be populated by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <i class="fas fa-tools"></i>
+                        Digital Tools
+                    </div>
+                    <p>Simplifying your digital life with powerful, easy-to-use tools for all your needs.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">All Tools</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p>Email: mdmujahidul859790@gmail.com</p>
+                    <p>We're here to help with any questions about our tools.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Digital Tools. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tool data organized by category
+        const toolsData = {
+            "image-tools": [
+                { name: "Image Converter", description: "Convert images between different formats", icon: "fas fa-exchange-alt" },
+                { name: "Image Compressor", description: "Reduce image file size without losing quality", icon: "fas fa-compress-alt" },
+                { name: "Image Resizer", description: "Resize images to specific dimensions", icon: "fas fa-expand-alt" },
+                { name: "Image Cropper", description: "Crop images to remove unwanted areas", icon: "fas fa-crop-alt" },
+                { name: "Image to Text (OCR)", description: "Extract text from images using OCR technology", icon: "fas fa-font" },
+                { name: "Image Rotator/Flipper", description: "Rotate or flip images in any direction", icon: "fas fa-redo" }
+            ],
+            "document-tools": [
+                { name: "PDF to Word / Word to PDF", description: "Convert between PDF and Word documents", icon: "fas fa-file-pdf" },
+                { name: "PDF Compressor", description: "Reduce PDF file size while maintaining quality", icon: "fas fa-file-archive" },
+                { name: "PDF Merger & Splitter", description: "Combine or split PDF documents", icon: "fas fa-object-group" },
+                { name: "Document Converter", description: "Convert between various document formats", icon: "fas fa-exchange-alt" },
+                { name: "PDF Lock/Unlock", description: "Add or remove password protection from PDFs", icon: "fas fa-lock" },
+                { name: "eSign PDF", description: "Add electronic signatures to PDF documents", icon: "fas fa-signature" }
+            ],
+            "calculator-tools": [
+                { name: "Scientific Calculator", description: "Advanced calculator for complex calculations", icon: "fas fa-square-root-alt" },
+                { name: "Age Calculator", description: "Calculate age based on birth date", icon: "fas fa-birthday-cake" },
+                { name: "BMI Calculator", description: "Calculate Body Mass Index", icon: "fas fa-weight" },
+                { name: "Loan EMI Calculator", description: "Calculate Equated Monthly Installments", icon: "fas fa-money-check-alt" },
+                { name: "GST Calculator", description: "Calculate Goods and Services Tax", icon: "fas fa-percentage" },
+                { name: "Currency Converter", description: "Convert between different currencies", icon: "fas fa-dollar-sign" }
+            ],
+            "text-tools": [
+                { name: "Text Case Converter", description: "Change text case (upper, lower, title, etc.)", icon: "fas fa-text-height" },
+                { name: "Word & Character Counter", description: "Count words, characters, and sentences", icon: "fas fa-sort-amount-down" },
+                { name: "Remove Duplicate Lines", description: "Remove duplicate lines from text", icon: "fas fa-clone" },
+                { name: "Text Sorter", description: "Sort text lines alphabetically or numerically", icon: "fas fa-sort-alpha-down" },
+                { name: "Text Reverser", description: "Reverse text or string order", icon: "fas fa-retweet" },
+                { name: "Text Encryptor/Decryptor", description: "Encrypt and decrypt text securely", icon: "fas fa-key" }
+            ],
+            "web-tools": [
+                { name: "HTML/CSS/JS Minifier", description: "Minify HTML, CSS, and JavaScript code", icon: "fas fa-code" },
+                { name: "JSON Formatter & Validator", description: "Format and validate JSON data", icon: "fas fa-brackets-curly" },
+                { name: "Base64 Encoder/Decoder", description: "Encode and decode Base64 strings", icon: "fas fa-lock" },
+                { name: "URL Encoder/Decoder", description: "Encode and decode URL strings", icon: "fas fa-link" },
+                { name: "Color Picker & Converter", description: "Pick colors and convert between formats", icon: "fas fa-eye-dropper" },
+                { name: "Regex Tester", description: "Test and debug regular expressions", icon: "fas fa-terminal" }
+            ],
+            "color-tools": [
+                { name: "Color Picker from Image", description: "Extract colors from any image", icon: "fas fa-eye-dropper" },
+                { name: "HEX to RGB Converter", description: "Convert HEX color codes to RGB values", icon: "fas fa-palette" },
+                { name: "Gradient Generator", description: "Create beautiful CSS gradients", icon: "fas fa-fill-drip" },
+                { name: "Contrast Checker", description: "Check color contrast for accessibility", icon: "fas fa-adjust" },
+                { name: "Palette Generator", description: "Generate harmonious color palettes", icon: "fas fa-swatchbook" },
+                { name: "Color Blindness Simulator", description: "Simulate how colors appear to colorblind users", icon: "fas fa-low-vision" }
+            ],
+            "seo-tools": [
+                { name: "Keyword Density Checker", description: "Analyze keyword density in your content", icon: "fas fa-search" },
+                { name: "Meta Tag Analyzer", description: "Check and analyze meta tags", icon: "fas fa-tags" },
+                { name: "Word Counter", description: "Count words for SEO optimization", icon: "fas fa-sort-amount-down" }
+            ],
+            "utility-tools": [
+                { name: "QR Code Generator & Scanner", description: "Create and scan QR codes", icon: "fas fa-qrcode" },
+                { name: "Barcode Generator", description: "Generate various barcode types", icon: "fas fa-barcode" },
+                { name: "UUID Generator", description: "Generate unique identifiers", icon: "fas fa-fingerprint" },
+                { name: "Unit Converter", description: "Convert between different units of measurement", icon: "fas fa-ruler-combined" },
+                { name: "Time Zone Converter", description: "Convert time between different time zones", icon: "fas fa-globe-americas" },
+                { name: "Random Number/Password Generator", description: "Generate random numbers and secure passwords", icon: "fas fa-random" }
+            ]
+        };
+
+        // Function to create tool cards
+        function createToolCard(tool) {
+            return `
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="${tool.icon}"></i></div>
+                    <h3>${tool.name}</h3>
+                    <p>${tool.description}</p>
+                    <a href="#" class="use-tool-btn">Use Tool</a>
+                </div>
+            `;
+        }
+
+        // Populate tool sections
+        document.addEventListener('DOMContentLoaded', function() {
+            for (const [sectionId, tools] of Object.entries(toolsData)) {
+                const sectionElement = document.getElementById(sectionId);
+                if (sectionElement) {
+                    sectionElement.innerHTML = tools.map(tool => createToolCard(tool)).join('');
+                }
+            }
+
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const allToolCards = document.querySelectorAll('.tool-card');
+                
+                allToolCards.forEach(card => {
+                    const toolName = card.querySelector('h3').textContent.toLowerCase();
+                    const toolDescription = card.querySelector('p').textContent.toLowerCase();
+                    
+                    if (toolName.includes(searchTerm) || toolDescription.includes(searchTerm)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+
+            // Mobile menu functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            const contactEmail = document.querySelector('.contact-email');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                const isVisible = navLinks.style.display === 'flex';
+                
+                if (isVisible) {
+                    navLinks.style.display = 'none';
+                    contactEmail.style.display = 'none';
+                } else {
+                    navLinks.style.display = 'flex';
+                    contactEmail.style.display = 'block';
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '100%';
+                    navLinks.style.left = '0';
+                    navLinks.style.right = '0';
+                    navLinks.style.backgroundColor = 'white';
+                    navLinks.style.padding = '20px';
+                    navLinks.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+                    
+                    contactEmail.style.position = 'absolute';
+                    contactEmail.style.top = 'calc(100% + 150px)';
+                    contactEmail.style.left = '20px';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
